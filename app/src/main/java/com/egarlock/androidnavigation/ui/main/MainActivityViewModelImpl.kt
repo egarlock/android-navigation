@@ -3,6 +3,7 @@ package com.egarlock.androidnavigation.ui.main
 class MainActivityViewModelImpl : MainActivityViewModel {
 
     // region - Variables
+    override var currentFragment: MainActivityViewModel.CurrentFragment = MainActivityViewModel.CurrentFragment.ONE
     // endregion
 
 
