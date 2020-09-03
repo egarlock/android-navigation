@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
+import com.egarlock.androidnavigation.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity() {
@@ -65,18 +67,15 @@ class MainActivity : BaseActivity() {
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-//                bottom_navigation_view.selectedItemId = R.id.menu_item_one
-                navController.navigate(R.id.navigation_fragment_main)
+                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_one))
             }
             R.id.navigation_view_menu_item_two -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-//                bottom_navigation_view.selectedItemId = R.id.menu_item_two
-                navController.navigate(R.id.navigation_fragment_main)
+                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_two))
             }
             R.id.navigation_view_menu_item_three -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-//                bottom_navigation_view.selectedItemId = R.id.menu_item_three
-                navController.navigate(R.id.navigation_fragment_main)
+                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_three))
             }
             R.id.navigation_view_menu_item_four -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)

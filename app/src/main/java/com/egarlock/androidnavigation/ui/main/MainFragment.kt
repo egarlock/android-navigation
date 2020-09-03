@@ -2,6 +2,7 @@ package com.egarlock.androidnavigation.ui.main
 
 import android.os.Bundle
 import android.view.*
+import androidx.navigation.fragment.navArgs
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.main_activity.*
@@ -11,6 +12,8 @@ class MainFragment : BaseFragment() {
 
     // region - Variables
     private val viewModel: MainFragmentViewModel = MainFragmentViewModelImpl()
+
+    private val args: MainFragmentArgs by navArgs<MainFragmentArgs>()
     // endregion
 
 
@@ -52,6 +55,12 @@ class MainFragment : BaseFragment() {
         // BottomNavigationView
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             bottomNavigationView_ItemSelected(it)
+        }
+
+
+        // Default
+        if (args.defaultMenuItemId != 0) {
+            bottom_navigation_view.selectedItemId = args.defaultMenuItemId
         }
 
     }

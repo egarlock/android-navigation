@@ -13,6 +13,11 @@
         android:label="main_fragment"
         tools:layout="@layout/main_fragment"
         >
+        <argument
+            android:name="defaultMenuItemId"
+            app:argType="reference"
+            android:defaultValue="0"
+            />
 
     </fragment>
     <fragment
