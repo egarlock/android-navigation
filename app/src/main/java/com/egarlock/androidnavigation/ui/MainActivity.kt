@@ -1,4 +1,4 @@
-package com.egarlock.androidnavigation.ui.main
+package com.egarlock.androidnavigation.ui
 
 import android.os.Bundle
 import android.view.Gravity
@@ -8,9 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
-import com.egarlock.androidnavigation.ui.main.MainFragmentViewModel.CurrentFragment
 import kotlinx.android.synthetic.main.main_activity.*
-import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainActivity : BaseActivity() {
 
@@ -60,26 +58,26 @@ class MainActivity : BaseActivity() {
     // UIResponders
     private fun navigationView_ItemSelected(item: MenuItem): Boolean {
 
-//        when (item.itemId) {
-//            R.id.navigation_view_menu_item_one -> {
-//                drawer_layout.closeDrawer(Gravity.LEFT)
+        when (item.itemId) {
+            R.id.navigation_view_menu_item_one -> {
+                drawer_layout.closeDrawer(Gravity.LEFT)
 //                bottom_navigation_view.selectedItemId = R.id.menu_item_one
-//            }
-//            R.id.navigation_view_menu_item_two -> {
-//                drawer_layout.closeDrawer(Gravity.LEFT)
+            }
+            R.id.navigation_view_menu_item_two -> {
+                drawer_layout.closeDrawer(Gravity.LEFT)
 //                bottom_navigation_view.selectedItemId = R.id.menu_item_two
-//            }
-//            R.id.navigation_view_menu_item_three -> {
-//                drawer_layout.closeDrawer(Gravity.LEFT)
+            }
+            R.id.navigation_view_menu_item_three -> {
+                drawer_layout.closeDrawer(Gravity.LEFT)
 //                bottom_navigation_view.selectedItemId = R.id.menu_item_three
-//            }
-//            R.id.navigation_view_menu_item_four -> {
-//
-//            }
-//            R.id.navigation_view_menu_item_five -> {
-//
-//            }
-//        }
+            }
+            R.id.navigation_view_menu_item_four -> {
+
+            }
+            R.id.navigation_view_menu_item_five -> {
+
+            }
+        }
 
 
         return true
