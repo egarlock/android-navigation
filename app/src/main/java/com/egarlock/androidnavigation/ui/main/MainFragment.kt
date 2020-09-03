@@ -58,7 +58,7 @@ class MainFragment : BaseFragment() {
         }
 
 
-        // Default
+        // Default MenuItem / Fragment
         if (args.defaultMenuItemId != 0) {
             bottom_navigation_view.selectedItemId = args.defaultMenuItemId
         }
