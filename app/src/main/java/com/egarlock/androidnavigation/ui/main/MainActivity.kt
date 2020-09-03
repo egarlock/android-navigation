@@ -1,14 +1,14 @@
 package com.egarlock.androidnavigation.ui.main
 
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.util.Log
+import android.view.Gravity
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
 import com.egarlock.androidnavigation.ui.main.MainActivityViewModel.CurrentFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.egarlock.androidnavigation.util.onMainThread
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity() {
@@ -52,27 +52,64 @@ class MainActivity : BaseActivity() {
 
         // BottomNavigationView
         bottom_navigation_view.setOnNavigationItemSelectedListener {
-            BottomNavigationView_ItemSelected(it)
+            bottomNavigationView_ItemSelected(it)
         }
 
 
-        // NavigationView
+        // DrawerLayout
         drawer_layout.addDrawerListener(ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.navigation_view_open, R.string.navigation_view_close))
+
+
+        // NavigationView
+        navigation_view.setNavigationItemSelectedListener {
+            navigationView_ItemSelected(it)
+        }
 
     }
 
     // UIResponders
-    private fun BottomNavigationView_ItemSelected(item: MenuItem): Boolean {
+    private fun bottomNavigationView_ItemSelected(item: MenuItem): Boolean {
 
-        var currentFragment = when (item.itemId) {
-            R.id.menu_item_one -> CurrentFragment.ONE
-            R.id.menu_item_two -> CurrentFragment.TWO
-            R.id.menu_item_three -> CurrentFragment.THREE
-            else -> CurrentFragment.ONE
+        when (item.itemId) {
+            R.id.menu_item_one -> {
+                viewModel.currentFragment = CurrentFragment.ONE
+                view_pager.currentItem = CurrentFragment.ONE.ordinal
+            }
+            R.id.menu_item_two -> {
+                viewModel.currentFragment = CurrentFragment.TWO
+                view_pager.currentItem = CurrentFragment.TWO.ordinal
+            }
+            R.id.menu_item_three -> {
+                viewModel.currentFragment = CurrentFragment.THREE
+                view_pager.currentItem = CurrentFragment.THREE.ordinal
+            }
         }
 
-        viewModel.currentFragment = currentFragment
-        view_pager.setCurrentItem(currentFragment.ordinal, false)
+        return true
+    }
+    private fun navigationView_ItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.navigation_view_menu_item_one -> {
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                bottom_navigation_view.selectedItemId = R.id.menu_item_one
+            }
+            R.id.navigation_view_menu_item_two -> {
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                bottom_navigation_view.selectedItemId = R.id.menu_item_two
+            }
+            R.id.navigation_view_menu_item_three -> {
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                bottom_navigation_view.selectedItemId = R.id.menu_item_three
+            }
+            R.id.navigation_view_menu_item_four -> {
+
+            }
+            R.id.navigation_view_menu_item_five -> {
+
+            }
+        }
+
 
         return true
     }
