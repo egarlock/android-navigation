@@ -3,6 +3,8 @@ package com.egarlock.androidnavigation.ui.main
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
+import android.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
 import com.egarlock.androidnavigation.ui.main.MainActivityViewModel.CurrentFragment
@@ -40,6 +42,7 @@ class MainActivity : BaseActivity() {
 
         // This
         this.title = "Android Navigation"
+        this.supportActionBar?.hide()
 
 
         // Pager
@@ -51,6 +54,10 @@ class MainActivity : BaseActivity() {
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             BottomNavigationView_ItemSelected(it)
         }
+
+
+        // NavigationView
+        drawer_layout.addDrawerListener(ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.navigation_view_open, R.string.navigation_view_close))
 
     }
 

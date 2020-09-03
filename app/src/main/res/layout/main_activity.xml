@@ -13,11 +13,32 @@
         android:layout_height="match_parent"
         >
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            >
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Android Navigation"
+                app:titleTextColor="#FFFFFF"
+                app:navigationIcon="@drawable/tool_bar_navigation_item"
+                style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+                />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <com.egarlock.androidnavigation.ui.view.viewpager.NoScrollViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
             />
 
@@ -36,5 +57,14 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start|left"
+        app:headerLayout="@layout/navigation_view_header"
+        app:menu="@menu/navigation_view_menu"
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>
