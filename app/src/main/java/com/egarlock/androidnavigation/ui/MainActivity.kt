@@ -53,6 +53,10 @@ class MainActivity : BaseActivity() {
             navigationView_ItemSelected(it)
         }
 
+
+        // NavController
+        navController = Navigation.findNavController(this, R.id.navigation_fragment)
+
     }
 
     // UIResponders
@@ -62,20 +66,25 @@ class MainActivity : BaseActivity() {
             R.id.navigation_view_menu_item_one -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
 //                bottom_navigation_view.selectedItemId = R.id.menu_item_one
+                navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_two -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
 //                bottom_navigation_view.selectedItemId = R.id.menu_item_two
+                navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_three -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
 //                bottom_navigation_view.selectedItemId = R.id.menu_item_three
+                navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_four -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                navController.navigate(R.id.navigation_fragment_four)
             }
             R.id.navigation_view_menu_item_five -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                navController.navigate(R.id.navigation_fragment_five)
             }
         }
 
