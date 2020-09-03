@@ -72,11 +72,11 @@ class MainActivity : BaseActivity() {
                 navController.navigate(R.id.navigation_fragment_main, args)
             }
             R.id.navigation_view_menu_item_two -> {
-                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_one)
+                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_two)
                 navController.navigate(R.id.navigation_fragment_main, args)
             }
             R.id.navigation_view_menu_item_three -> {
-                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_one)
+                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_three)
                 navController.navigate(R.id.navigation_fragment_main, args)
             }
             R.id.navigation_view_menu_item_four -> {
