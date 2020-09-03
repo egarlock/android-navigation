@@ -39,6 +39,7 @@ dependencies {
     implementation "androidx.core:core-ktx:$corektx_version"
 
     // Navigation
+    implementation "androidx.navigation:navigation-ui:$navigation_version"
     implementation "androidx.navigation:navigation-runtime-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
 

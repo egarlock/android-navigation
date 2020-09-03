@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
 import com.egarlock.androidnavigation.ui.main.MainFragmentViewModel.CurrentFragment
@@ -13,6 +15,7 @@ import kotlinx.android.synthetic.main.main_fragment.*
 class MainActivity : BaseActivity() {
 
     // region - Variables
+    private lateinit var navController: NavController
     // endregion
 
 
@@ -82,6 +85,9 @@ class MainActivity : BaseActivity() {
         return true
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return  Navigation.findNavController(this, R.id.navigation_fragment).navigateUp() || super.onSupportNavigateUp()
+    }
     // endregion
 
 
