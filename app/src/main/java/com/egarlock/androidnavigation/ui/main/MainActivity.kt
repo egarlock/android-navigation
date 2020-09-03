@@ -56,8 +56,14 @@ class MainActivity : BaseActivity() {
         }
 
 
-        // NavigationView
+        // DrawerLayout
         drawer_layout.addDrawerListener(ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.navigation_view_open, R.string.navigation_view_close))
+
+
+        // NavigationView
+        navigation_view.setNavigationItemSelectedListener {
+            NavigationView_ItemSelected(it)
+        }
 
     }
 
@@ -73,6 +79,29 @@ class MainActivity : BaseActivity() {
 
         viewModel.currentFragment = currentFragment
         view_pager.setCurrentItem(currentFragment.ordinal, false)
+
+        return true
+    }
+    private fun NavigationView_ItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.navigation_view_menu_item_one -> {
+
+            }
+            R.id.navigation_view_menu_item_two -> {
+
+            }
+            R.id.navigation_view_menu_item_three -> {
+
+            }
+            R.id.navigation_view_menu_item_four -> {
+
+            }
+            R.id.navigation_view_menu_item_five -> {
+
+            }
+        }
+
 
         return true
     }
