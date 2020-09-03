@@ -1,8 +1,8 @@
-package com.egarlock.androidnavigation.ui.base
+package com.egarlock.androidnavigation.ui.main
 
-import androidx.fragment.app.Fragment
+import com.egarlock.androidnavigation.ui.base.BaseActivity
 
-open class BaseFragment : Fragment() {
+class MainActivity : BaseActivity() {
 
     // region - Variables
     // endregion
@@ -14,7 +14,7 @@ open class BaseFragment : Fragment() {
 
 
 
-    // region - Fragment Lifecycle Methods
+    // region - Activity Lifecycle Methods
     // endregion
 
 
