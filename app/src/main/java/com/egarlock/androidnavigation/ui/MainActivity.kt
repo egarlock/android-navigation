@@ -1,20 +1,21 @@
-package com.egarlock.androidnavigation.ui.main
+package com.egarlock.androidnavigation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
-import com.egarlock.androidnavigation.ui.main.MainActivityViewModel.CurrentFragment
-import com.egarlock.androidnavigation.util.onMainThread
+import com.egarlock.androidnavigation.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity() {
 
     // region - Variables
-    private val viewModel: MainActivityViewModel = MainActivityViewModelImpl()
+    private lateinit var navController: NavController
     // endregion
 
 
@@ -45,17 +46,6 @@ class MainActivity : BaseActivity() {
         this.supportActionBar?.hide()
 
 
-        // Pager
-        view_pager.offscreenPageLimit = MainActivityAdapter.fragmentCount()
-        view_pager.adapter = MainActivityAdapter(this, supportFragmentManager)
-
-
-        // BottomNavigationView
-        bottom_navigation_view.setOnNavigationItemSelectedListener {
-            bottomNavigationView_ItemSelected(it)
-        }
-
-
         // DrawerLayout
         drawer_layout.addDrawerListener(ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.navigation_view_open, R.string.navigation_view_close))
 
@@ -65,48 +55,35 @@ class MainActivity : BaseActivity() {
             navigationView_ItemSelected(it)
         }
 
+
+        // NavController
+        navController = Navigation.findNavController(this, R.id.navigation_fragment)
+
     }
 
     // UIResponders
-    private fun bottomNavigationView_ItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-            R.id.menu_item_one -> {
-                viewModel.currentFragment = CurrentFragment.ONE
-                view_pager.currentItem = CurrentFragment.ONE.ordinal
-            }
-            R.id.menu_item_two -> {
-                viewModel.currentFragment = CurrentFragment.TWO
-                view_pager.currentItem = CurrentFragment.TWO.ordinal
-            }
-            R.id.menu_item_three -> {
-                viewModel.currentFragment = CurrentFragment.THREE
-                view_pager.currentItem = CurrentFragment.THREE.ordinal
-            }
-        }
-
-        return true
-    }
     private fun navigationView_ItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-                bottom_navigation_view.selectedItemId = R.id.menu_item_one
+                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_one))
             }
             R.id.navigation_view_menu_item_two -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-                bottom_navigation_view.selectedItemId = R.id.menu_item_two
+                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_two))
             }
             R.id.navigation_view_menu_item_three -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-                bottom_navigation_view.selectedItemId = R.id.menu_item_three
+                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_three))
             }
             R.id.navigation_view_menu_item_four -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                navController.navigate(R.id.navigation_fragment_four)
             }
             R.id.navigation_view_menu_item_five -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                navController.navigate(R.id.navigation_fragment_five)
             }
         }
 
@@ -114,6 +91,9 @@ class MainActivity : BaseActivity() {
         return true
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return  Navigation.findNavController(this, R.id.navigation_fragment).navigateUp() || super.onSupportNavigateUp()
+    }
     // endregion
 
 

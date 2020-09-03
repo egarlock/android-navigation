@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/navigation_fragment_main"
+    >
+
+    <fragment
+        android:id="@+id/navigation_fragment_main"
+        android:name="com.egarlock.androidnavigation.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment"
+        >
+        <argument
+            android:name="defaultMenuItemId"
+            app:argType="reference"
+            android:defaultValue="0"
+            />
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_fragment_four"
+        android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
+        android:label="four_fragment"
+        tools:layout="@layout/four_fragment"
+        >
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_fragment_five"
+        android:name="com.egarlock.androidnavigation.ui.five.FiveFragment"
+        android:label="five_fragment"
+        tools:layout="@layout/five_fragment"
+        >
+
+    </fragment>
+
+</navigation>
