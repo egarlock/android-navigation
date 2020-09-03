@@ -1,6 +1,6 @@
 package com.egarlock.androidnavigation.ui.main
 
-interface MainActivityViewModel {
+interface MainFragmentViewModel {
 
     enum class CurrentFragment { ONE, TWO, THREE }
 

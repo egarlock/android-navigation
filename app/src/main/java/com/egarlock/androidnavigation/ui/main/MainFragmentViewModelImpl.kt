@@ -1,9 +1,9 @@
 package com.egarlock.androidnavigation.ui.main
 
-class MainActivityViewModelImpl : MainActivityViewModel {
+class MainFragmentViewModelImpl : MainFragmentViewModel {
 
     // region - Variables
-    override var currentFragment: MainActivityViewModel.CurrentFragment = MainActivityViewModel.CurrentFragment.ONE
+    override var currentFragment: MainFragmentViewModel.CurrentFragment = MainFragmentViewModel.CurrentFragment.ONE
     // endregion
 
 
