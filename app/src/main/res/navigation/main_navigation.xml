@@ -15,5 +15,21 @@
         >
 
     </fragment>
+    <fragment
+        android:id="@+id/four_fragment"
+        android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
+        android:label="four_fragment"
+        tools:layout="@layout/four_fragment"
+        >
+
+    </fragment>
+    <fragment
+        android:id="@+id/five_fragment"
+        android:name="com.egarlock.androidnavigation.ui.five.FiveFragment"
+        android:label="five_fragment"
+        tools:layout="@layout/five_fragment"
+        >
+        
+    </fragment>
 
 </navigation>
