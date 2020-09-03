@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <item android:color="#FFFFFF" android:state_selected="true" tools:ignore="MenuTitle" />
+    <item android:color="#B8B8B8" android:state_selected="false" tools:ignore="MenuTitle" />
+</selector>
