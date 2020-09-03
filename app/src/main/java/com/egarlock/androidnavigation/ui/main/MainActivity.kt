@@ -2,6 +2,7 @@ package com.egarlock.androidnavigation.ui.main
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.Gravity
 import android.view.MenuItem
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -67,18 +68,20 @@ class MainActivity : BaseActivity() {
 
     }
 
+    // Display Logic
+    private fun updateCurrentFragment(currentFragment: CurrentFragment) {
+        viewModel.currentFragment = currentFragment
+        view_pager.setCurrentItem(currentFragment.ordinal, false)
+    }
+
     // UIResponders
     private fun BottomNavigationView_ItemSelected(item: MenuItem): Boolean {
 
-        var currentFragment = when (item.itemId) {
-            R.id.menu_item_one -> CurrentFragment.ONE
-            R.id.menu_item_two -> CurrentFragment.TWO
-            R.id.menu_item_three -> CurrentFragment.THREE
-            else -> CurrentFragment.ONE
+        when (item.itemId) {
+            R.id.menu_item_one -> updateCurrentFragment(CurrentFragment.ONE)
+            R.id.menu_item_two -> updateCurrentFragment(CurrentFragment.TWO)
+            R.id.menu_item_three -> updateCurrentFragment(CurrentFragment.THREE)
         }
-
-        viewModel.currentFragment = currentFragment
-        view_pager.setCurrentItem(currentFragment.ordinal, false)
 
         return true
     }
@@ -86,13 +89,16 @@ class MainActivity : BaseActivity() {
 
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                updateCurrentFragment(CurrentFragment.ONE)
             }
             R.id.navigation_view_menu_item_two -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                updateCurrentFragment(CurrentFragment.TWO)
             }
             R.id.navigation_view_menu_item_three -> {
-
+                drawer_layout.closeDrawer(Gravity.LEFT)
+                updateCurrentFragment(CurrentFragment.THREE)
             }
             R.id.navigation_view_menu_item_four -> {
 
