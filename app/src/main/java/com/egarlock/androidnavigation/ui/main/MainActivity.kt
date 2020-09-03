@@ -1,15 +1,14 @@
 package com.egarlock.androidnavigation.ui.main
 
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.ui.base.BaseActivity
 import com.egarlock.androidnavigation.ui.main.MainActivityViewModel.CurrentFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.egarlock.androidnavigation.util.onMainThread
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity() {
@@ -53,7 +52,7 @@ class MainActivity : BaseActivity() {
 
         // BottomNavigationView
         bottom_navigation_view.setOnNavigationItemSelectedListener {
-            BottomNavigationView_ItemSelected(it)
+            bottomNavigationView_ItemSelected(it)
         }
 
 
@@ -63,42 +62,45 @@ class MainActivity : BaseActivity() {
 
         // NavigationView
         navigation_view.setNavigationItemSelectedListener {
-            NavigationView_ItemSelected(it)
+            navigationView_ItemSelected(it)
         }
 
     }
 
-    // Display Logic
-    private fun updateCurrentFragment(currentFragment: CurrentFragment) {
-        viewModel.currentFragment = currentFragment
-        view_pager.setCurrentItem(currentFragment.ordinal, false)
-    }
-
     // UIResponders
-    private fun BottomNavigationView_ItemSelected(item: MenuItem): Boolean {
+    private fun bottomNavigationView_ItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.menu_item_one -> updateCurrentFragment(CurrentFragment.ONE)
-            R.id.menu_item_two -> updateCurrentFragment(CurrentFragment.TWO)
-            R.id.menu_item_three -> updateCurrentFragment(CurrentFragment.THREE)
+            R.id.menu_item_one -> {
+                viewModel.currentFragment = CurrentFragment.ONE
+                view_pager.currentItem = CurrentFragment.ONE.ordinal
+            }
+            R.id.menu_item_two -> {
+                viewModel.currentFragment = CurrentFragment.TWO
+                view_pager.currentItem = CurrentFragment.TWO.ordinal
+            }
+            R.id.menu_item_three -> {
+                viewModel.currentFragment = CurrentFragment.THREE
+                view_pager.currentItem = CurrentFragment.THREE.ordinal
+            }
         }
 
         return true
     }
-    private fun NavigationView_ItemSelected(item: MenuItem): Boolean {
+    private fun navigationView_ItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-                updateCurrentFragment(CurrentFragment.ONE)
+                bottom_navigation_view.selectedItemId = R.id.menu_item_one
             }
             R.id.navigation_view_menu_item_two -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-                updateCurrentFragment(CurrentFragment.TWO)
+                bottom_navigation_view.selectedItemId = R.id.menu_item_two
             }
             R.id.navigation_view_menu_item_three -> {
                 drawer_layout.closeDrawer(Gravity.LEFT)
-                updateCurrentFragment(CurrentFragment.THREE)
+                bottom_navigation_view.selectedItemId = R.id.menu_item_three
             }
             R.id.navigation_view_menu_item_four -> {
 
