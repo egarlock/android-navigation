@@ -64,29 +64,28 @@ class MainActivity : BaseActivity() {
     // UIResponders
     private fun navigationView_ItemSelected(item: MenuItem): Boolean {
 
+        drawer_layout.closeDrawer(Gravity.LEFT)
+
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
-                drawer_layout.closeDrawer(Gravity.LEFT)
-                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_one))
+                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_one)
+                navController.navigate(R.id.navigation_fragment_main, args)
             }
             R.id.navigation_view_menu_item_two -> {
-                drawer_layout.closeDrawer(Gravity.LEFT)
-                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_two))
+                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_one)
+                navController.navigate(R.id.navigation_fragment_main, args)
             }
             R.id.navigation_view_menu_item_three -> {
-                drawer_layout.closeDrawer(Gravity.LEFT)
-                navController.navigate(R.id.navigation_fragment_main, bundleOf("defaultMenuItemId" to R.id.menu_item_three))
+                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_one)
+                navController.navigate(R.id.navigation_fragment_main, args)
             }
             R.id.navigation_view_menu_item_four -> {
-                drawer_layout.closeDrawer(Gravity.LEFT)
                 navController.navigate(R.id.navigation_fragment_four)
             }
             R.id.navigation_view_menu_item_five -> {
-                drawer_layout.closeDrawer(Gravity.LEFT)
                 navController.navigate(R.id.navigation_fragment_five)
             }
         }
-
 
         return true
     }
