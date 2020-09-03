@@ -8,6 +8,7 @@ import com.egarlock.androidnavigation.ui.base.BaseActivity
 class MainActivity : BaseActivity() {
 
     // region - Variables
+    private val viewModel: MainActivityViewModel = MainActivityViewModelImpl()
     // endregion
 
 
