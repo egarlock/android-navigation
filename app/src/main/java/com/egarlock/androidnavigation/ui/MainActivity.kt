@@ -4,14 +4,12 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
+import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.base.BaseActivity
-import com.egarlock.androidnavigation.ui.main.MainFragment
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity : BaseActivity() {
@@ -51,7 +49,7 @@ class MainActivity : BaseActivity() {
 
 
         // ViewModel
-        this.activityViewModel = ViewModelProvider(this).get(MainActivityViewModelImpl::class.java)
+        this.activityViewModel = ViewModelProvider(application as App).get(MainActivityViewModelImpl::class.java)
 
 
         // DrawerLayout

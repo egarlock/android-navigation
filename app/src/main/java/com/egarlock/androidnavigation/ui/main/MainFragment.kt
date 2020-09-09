@@ -5,12 +5,11 @@ import android.util.Log
 import android.view.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
 import com.egarlock.androidnavigation.R
+import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.MainActivityViewModel
 import com.egarlock.androidnavigation.ui.MainActivityViewModelImpl
 import com.egarlock.androidnavigation.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : BaseFragment() {
@@ -54,7 +53,7 @@ class MainFragment : BaseFragment() {
 
         // ViewModel
         this.activityViewModel = activity?.let {
-            ViewModelProvider(this).get(MainActivityViewModelImpl::class.java)
+            ViewModelProvider(it.application as App).get(MainActivityViewModelImpl::class.java)
         } ?: throw Exception("Invalid Activity")
 
 
