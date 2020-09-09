@@ -1,11 +1,15 @@
 package com.egarlock.androidnavigation.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
-import androidx.navigation.fragment.navArgs
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.egarlock.androidnavigation.R
+import com.egarlock.androidnavigation.application.App
+import com.egarlock.androidnavigation.ui.MainActivityViewModel
+import com.egarlock.androidnavigation.ui.MainActivityViewModelImpl
 import com.egarlock.androidnavigation.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : BaseFragment() {
@@ -13,7 +17,7 @@ class MainFragment : BaseFragment() {
     // region - Variables
     private val viewModel: MainFragmentViewModel = MainFragmentViewModelImpl()
 
-    private val args: MainFragmentArgs by navArgs<MainFragmentArgs>()
+    private lateinit var activityViewModel: MainActivityViewModel
     // endregion
 
 
@@ -47,6 +51,12 @@ class MainFragment : BaseFragment() {
         // This
 
 
+        // ViewModel
+        this.activityViewModel = activity?.let {
+            ViewModelProvider(it.application as App).get(MainActivityViewModelImpl::class.java)
+        } ?: throw Exception("Invalid Activity")
+
+
         // Pager
         view_pager.offscreenPageLimit = MainFragmentAdapter.fragmentCount()
         view_pager.adapter = MainFragmentAdapter(this.requireContext(), this.childFragmentManager)
@@ -59,9 +69,22 @@ class MainFragment : BaseFragment() {
 
 
         // Default MenuItem / Fragment
-        if (args.defaultMenuItemId != 0) {
-            bottom_navigation_view.selectedItemId = args.defaultMenuItemId
+        activityViewModel.mainPagerFragment.value.let { mainPagerFragment ->
+
+            when (mainPagerFragment) {
+                MainActivityViewModel.MainPagerFragent.ONE -> bottom_navigation_view.selectedItemId = R.id.menu_item_one
+                MainActivityViewModel.MainPagerFragent.TWO -> bottom_navigation_view.selectedItemId = R.id.menu_item_two
+                MainActivityViewModel.MainPagerFragent.THREE -> bottom_navigation_view.selectedItemId = R.id.menu_item_three
+            }
         }
+
+
+        // MainPagerFragment
+        activityViewModel.mainPagerFragment.observe(this, Observer { mainPagerFragment ->
+            view_pager.currentItem = mainPagerFragment.ordinal
+        })
+
+        Log.d("HERE", "fragment: ${this.hashCode()}, viewModel: ${activityViewModel.hashCode()}")
 
     }
 
@@ -70,16 +93,13 @@ class MainFragment : BaseFragment() {
 
         when (item.itemId) {
             R.id.menu_item_one -> {
-                viewModel.currentFragment = MainFragmentViewModel.CurrentFragment.ONE
-                view_pager.currentItem = MainFragmentViewModel.CurrentFragment.ONE.ordinal
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
             }
             R.id.menu_item_two -> {
-                viewModel.currentFragment = MainFragmentViewModel.CurrentFragment.TWO
-                view_pager.currentItem = MainFragmentViewModel.CurrentFragment.TWO.ordinal
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.TWO
             }
             R.id.menu_item_three -> {
-                viewModel.currentFragment = MainFragmentViewModel.CurrentFragment.THREE
-                view_pager.currentItem = MainFragmentViewModel.CurrentFragment.THREE.ordinal
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.THREE
             }
         }
 
