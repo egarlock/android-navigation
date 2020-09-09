@@ -69,9 +69,14 @@ class MainFragment : BaseFragment() {
 
 
         // Default MenuItem / Fragment
-//        if (args.defaultMenuItemId != 0) {
-//            bottom_navigation_view.selectedItemId = args.defaultMenuItemId
-//        }
+        activityViewModel.mainPagerFragment.value.let { mainPagerFragment ->
+
+            when (mainPagerFragment) {
+                MainActivityViewModel.MainPagerFragent.ONE -> bottom_navigation_view.selectedItemId = R.id.menu_item_one
+                MainActivityViewModel.MainPagerFragent.TWO -> bottom_navigation_view.selectedItemId = R.id.menu_item_two
+                MainActivityViewModel.MainPagerFragent.THREE -> bottom_navigation_view.selectedItemId = R.id.menu_item_three
+            }
+        }
 
 
         // MainPagerFragment
@@ -79,7 +84,7 @@ class MainFragment : BaseFragment() {
             view_pager.currentItem = mainPagerFragment.ordinal
         })
 
-        Log.d("HERE", "$activityViewModel")
+        Log.d("HERE", "fragment: ${this.hashCode()}, viewModel: ${activityViewModel.hashCode()}")
 
     }
 

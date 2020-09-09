@@ -80,7 +80,7 @@ class MainActivity : BaseActivity() {
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
-
+                
                 navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_two -> {
