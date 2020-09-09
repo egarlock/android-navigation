@@ -5,6 +5,8 @@ import android.view.Gravity
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
@@ -16,6 +18,8 @@ class MainActivity : BaseActivity() {
 
     // region - Variables
     private lateinit var navController: NavController
+
+    private lateinit var activityViewModel: MainActivityViewModel
     // endregion
 
 
@@ -46,6 +50,10 @@ class MainActivity : BaseActivity() {
         this.supportActionBar?.hide()
 
 
+        // ViewModel
+        this.activityViewModel = ViewModelProvider(this).get(MainActivityViewModelImpl::class.java)
+
+
         // DrawerLayout
         drawer_layout.addDrawerListener(ActionBarDrawerToggle(this, drawer_layout, tool_bar, R.string.navigation_view_open, R.string.navigation_view_close))
 
@@ -61,6 +69,11 @@ class MainActivity : BaseActivity() {
 
     }
 
+    // Navigation
+    private fun navigateToFragment(resId: Int) {
+
+    }
+
     // UIResponders
     private fun navigationView_ItemSelected(item: MenuItem): Boolean {
 
@@ -68,16 +81,19 @@ class MainActivity : BaseActivity() {
 
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
-                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_one)
-                navController.navigate(R.id.navigation_fragment_main, args)
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
+
+                navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_two -> {
-                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_two)
-                navController.navigate(R.id.navigation_fragment_main, args)
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.TWO
+
+                navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_three -> {
-                var args = bundleOf("defaultMenuItemId" to R.id.menu_item_three)
-                navController.navigate(R.id.navigation_fragment_main, args)
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.THREE
+
+                navController.navigate(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_four -> {
                 navController.navigate(R.id.navigation_fragment_four)

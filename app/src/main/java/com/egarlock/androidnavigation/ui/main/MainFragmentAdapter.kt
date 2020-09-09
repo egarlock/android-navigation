@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.egarlock.androidnavigation.ui.MainActivityViewModel
 import com.egarlock.androidnavigation.ui.one.OneFragment
 import com.egarlock.androidnavigation.ui.three.ThreeFragment
 import com.egarlock.androidnavigation.ui.two.TwoFragment
@@ -16,7 +17,7 @@ class MainFragmentAdapter(
 
     // region - Variables
     companion object {
-        fun fragmentCount(): Int = MainFragmentViewModel.CurrentFragment.values().count()
+        fun fragmentCount(): Int = MainActivityViewModel.MainPagerFragent.values().count()
     }
     // endregion
 
@@ -37,9 +38,9 @@ class MainFragmentAdapter(
     override fun getCount(): Int = fragmentCount()
     override fun getItem(position: Int): Fragment {
         return when(position) {
-            MainFragmentViewModel.CurrentFragment.ONE.ordinal -> OneFragment()
-            MainFragmentViewModel.CurrentFragment.TWO.ordinal -> TwoFragment()
-            MainFragmentViewModel.CurrentFragment.THREE.ordinal -> ThreeFragment()
+            MainActivityViewModel.MainPagerFragent.ONE.ordinal -> OneFragment()
+            MainActivityViewModel.MainPagerFragent.TWO.ordinal -> TwoFragment()
+            MainActivityViewModel.MainPagerFragent.THREE.ordinal -> ThreeFragment()
             else -> OneFragment()
         }
     }

@@ -1,9 +1,14 @@
 package com.egarlock.androidnavigation.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.egarlock.androidnavigation.R
+import com.egarlock.androidnavigation.ui.MainActivityViewModel
+import com.egarlock.androidnavigation.ui.MainActivityViewModelImpl
 import com.egarlock.androidnavigation.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -13,7 +18,7 @@ class MainFragment : BaseFragment() {
     // region - Variables
     private val viewModel: MainFragmentViewModel = MainFragmentViewModelImpl()
 
-    private val args: MainFragmentArgs by navArgs<MainFragmentArgs>()
+    private lateinit var activityViewModel: MainActivityViewModel
     // endregion
 
 
@@ -47,6 +52,12 @@ class MainFragment : BaseFragment() {
         // This
 
 
+        // ViewModel
+        this.activityViewModel = activity?.let {
+            ViewModelProvider(this).get(MainActivityViewModelImpl::class.java)
+        } ?: throw Exception("Invalid Activity")
+
+
         // Pager
         view_pager.offscreenPageLimit = MainFragmentAdapter.fragmentCount()
         view_pager.adapter = MainFragmentAdapter(this.requireContext(), this.childFragmentManager)
@@ -59,9 +70,17 @@ class MainFragment : BaseFragment() {
 
 
         // Default MenuItem / Fragment
-        if (args.defaultMenuItemId != 0) {
-            bottom_navigation_view.selectedItemId = args.defaultMenuItemId
-        }
+//        if (args.defaultMenuItemId != 0) {
+//            bottom_navigation_view.selectedItemId = args.defaultMenuItemId
+//        }
+
+
+        // MainPagerFragment
+        activityViewModel.mainPagerFragment.observe(this, Observer { mainPagerFragment ->
+            view_pager.currentItem = mainPagerFragment.ordinal
+        })
+
+        Log.d("HERE", "$activityViewModel")
 
     }
 
@@ -70,16 +89,13 @@ class MainFragment : BaseFragment() {
 
         when (item.itemId) {
             R.id.menu_item_one -> {
-                viewModel.currentFragment = MainFragmentViewModel.CurrentFragment.ONE
-                view_pager.currentItem = MainFragmentViewModel.CurrentFragment.ONE.ordinal
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
             }
             R.id.menu_item_two -> {
-                viewModel.currentFragment = MainFragmentViewModel.CurrentFragment.TWO
-                view_pager.currentItem = MainFragmentViewModel.CurrentFragment.TWO.ordinal
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.TWO
             }
             R.id.menu_item_three -> {
-                viewModel.currentFragment = MainFragmentViewModel.CurrentFragment.THREE
-                view_pager.currentItem = MainFragmentViewModel.CurrentFragment.THREE.ordinal
+                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.THREE
             }
         }
 
