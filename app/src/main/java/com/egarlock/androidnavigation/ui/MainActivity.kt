@@ -66,7 +66,14 @@ class MainActivity : BaseActivity() {
         navController = Navigation.findNavController(this, R.id.navigation_fragment)
 
     }
-    
+
+    // Navigation Logic
+    private fun navigateToDestination(resId: Int) {
+        if (navController.currentDestination?.id != resId) {
+            navController.navigate(resId)
+        }
+    }
+
     // UIResponders
     private fun navigationView_ItemSelected(item: MenuItem): Boolean {
 
@@ -76,23 +83,23 @@ class MainActivity : BaseActivity() {
             R.id.navigation_view_menu_item_one -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
 
-                navController.navigate(R.id.navigation_fragment_main)
+                navigateToDestination(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_two -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.TWO
 
-                navController.navigate(R.id.navigation_fragment_main)
+                navigateToDestination(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_three -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.THREE
 
-                navController.navigate(R.id.navigation_fragment_main)
+                navigateToDestination(R.id.navigation_fragment_main)
             }
             R.id.navigation_view_menu_item_four -> {
-                navController.navigate(R.id.navigation_fragment_four)
+                navigateToDestination(R.id.navigation_fragment_four)
             }
             R.id.navigation_view_menu_item_five -> {
-                navController.navigate(R.id.navigation_fragment_five)
+                navigateToDestination(R.id.navigation_fragment_five)
             }
         }
 
