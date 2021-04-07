@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start|left"
-        app:headerLayout="@layout/navigation_view_header"
+        app:headerLayout="@layout/layout_header_navigation_view"
         app:menu="@menu/navigation_view_menu"
         />
 

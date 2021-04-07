@@ -11,7 +11,7 @@
         android:id="@+id/navigation_fragment_main"
         android:name="com.egarlock.androidnavigation.ui.main.MainFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment"
+        tools:layout="@layout/fragment_main"
         >
         <argument
             android:name="defaultMenuItemId"
@@ -24,7 +24,7 @@
         android:id="@+id/navigation_fragment_four"
         android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
         android:label="four_fragment"
-        tools:layout="@layout/four_fragment"
+        tools:layout="@layout/fragment_four"
         >
 
     </fragment>
@@ -32,7 +32,7 @@
         android:id="@+id/navigation_fragment_five"
         android:name="com.egarlock.androidnavigation.ui.five.FiveFragment"
         android:label="five_fragment"
-        tools:layout="@layout/five_fragment"
+        tools:layout="@layout/fragment_five"
         >
 
     </fragment>

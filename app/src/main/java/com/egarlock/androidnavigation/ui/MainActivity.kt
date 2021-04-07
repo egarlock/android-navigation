@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
@@ -31,7 +31,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.activity_main)
 
         // Setup
         setupMainActivity()

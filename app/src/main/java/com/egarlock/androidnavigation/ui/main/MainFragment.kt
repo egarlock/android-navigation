@@ -10,7 +10,7 @@ import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.MainActivityViewModel
 import com.egarlock.androidnavigation.ui.MainActivityViewModelImpl
 import com.egarlock.androidnavigation.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : BaseFragment() {
 
@@ -28,7 +28,7 @@ class MainFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
     override fun onStart() {
         super.onStart()

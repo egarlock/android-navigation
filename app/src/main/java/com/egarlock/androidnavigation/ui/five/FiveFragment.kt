@@ -25,7 +25,7 @@ class FiveFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.five_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_five, container, false)
     }
     // endregion
 

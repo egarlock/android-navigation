@@ -25,7 +25,7 @@ class TwoFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.two_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_two, container, false)
     }
     // endregion
 
