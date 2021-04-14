@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_one.xml">
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_one"
+    app:startDestination="@id/dest_one"
+    >
+
+    <fragment
+        android:id="@+id/dest_one"
+        android:name="com.egarlock.androidnavigation.ui.one.OneFragment"
+        android:label="One"
+        tools:layout="@layout/fragment_one"
+        />
+
+    <fragment
+        android:id="@+id/dest_two"
+        android:name="com.egarlock.androidnavigation.ui.two.TwoFragment"
+        android:label="Two"
+        tools:layout="@layout/fragment_two"
+        />
+
+    <fragment
+        android:id="@+id/dest_three"
+        android:name="com.egarlock.androidnavigation.ui.three.ThreeFragment"
+        android:label="Three"
+        tools:layout="@layout/fragment_three"
+        />
+
+    <fragment
+        android:id="@+id/dest_four"
+        android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
+        android:label="Four"
+        tools:layout="@layout/fragment_four"
+        />
+
+    <fragment
+        android:id="@+id/dest_five"
+        android:name="com.egarlock.androidnavigation.ui.five.FiveFragment"
+        android:label="Five"
+        tools:layout="@layout/fragment_five"
+        />
 
 </navigation>
