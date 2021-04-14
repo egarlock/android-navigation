@@ -33,16 +33,6 @@ class MainActivity : BaseActivity() {
 
         setContentView(R.layout.activity_main)
 
-        // Setup
-        setupMainActivity()
-    }
-    // endregion
-
-
-
-    // region - Private API
-    private fun setupMainActivity() {
-
         // This
         this.title = "Android Navigation"
         this.supportActionBar?.hide()
@@ -64,9 +54,12 @@ class MainActivity : BaseActivity() {
 
         // NavController
         navController = Navigation.findNavController(this, R.id.navigation_fragment)
-
     }
+    // endregion
 
+
+
+    // region - Private API
     // Navigation Logic
     private fun navigateToDestination(resId: Int) {
         if (navController.currentDestination?.id != resId) {
@@ -104,10 +97,6 @@ class MainActivity : BaseActivity() {
         }
 
         return true
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return  Navigation.findNavController(this, R.id.navigation_fragment).navigateUp() || super.onSupportNavigateUp()
     }
     // endregion
 
