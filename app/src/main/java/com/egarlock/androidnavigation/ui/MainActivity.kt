@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.base.BaseActivity
+import com.egarlock.androidnavigation.ui.base.NavigationHost
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -97,6 +98,17 @@ class MainActivity : BaseActivity() {
         }
 
         return true
+    }
+
+    override fun onBackPressed() {
+
+        var didNavigate = false
+
+        if (!didNavigate) didNavigate = (nav_host_main.childFragmentManager.fragments.first() as? NavigationHost)?.onBackPressed() ?: false
+
+        if (!didNavigate) didNavigate = navController.navigateUp()
+
+        if (!didNavigate) super.onBackPressed()
     }
     // endregion
 
