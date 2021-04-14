@@ -5,8 +5,8 @@ import com.egarlock.androidnavigation.ui.main.MainFragmentViewModel
 
 interface MainActivityViewModel {
 
-    enum class MainPagerFragent { ONE, TWO, THREE }
-
-    var mainPagerFragment: MutableLiveData<MainPagerFragent>
+//    enum class MainPagerFragent { ONE, TWO, THREE }
+//
+//    var mainPagerFragment: MutableLiveData<MainPagerFragent>
     
 }

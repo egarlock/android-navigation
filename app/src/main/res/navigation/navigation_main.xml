@@ -24,6 +24,33 @@
     </fragment>
 
     <fragment
+        android:id="@+id/dest_one"
+        android:name="com.egarlock.androidnavigation.ui.main.MainFragment"
+        android:label="Main"
+        tools:layout="@layout/fragment_main"
+        >
+        <argument android:name="page" app:argType="integer" android:defaultValue="0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dest_two"
+        android:name="com.egarlock.androidnavigation.ui.main.MainFragment"
+        android:label="Main"
+        tools:layout="@layout/fragment_main"
+        >
+        <argument android:name="page" app:argType="integer" android:defaultValue="0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dest_three"
+        android:name="com.egarlock.androidnavigation.ui.main.MainFragment"
+        android:label="Main"
+        tools:layout="@layout/fragment_main"
+        >
+        <argument android:name="page" app:argType="integer" android:defaultValue="0" />
+    </fragment>
+
+    <fragment
         android:id="@+id/dest_four"
         android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
         android:label="Four"

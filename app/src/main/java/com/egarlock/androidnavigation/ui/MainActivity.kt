@@ -11,6 +11,7 @@ import com.egarlock.androidnavigation.R
 import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.base.BaseActivity
 import com.egarlock.androidnavigation.ui.base.NavigationHost
+import com.egarlock.androidnavigation.ui.main.MainFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -62,9 +63,9 @@ class MainActivity : BaseActivity() {
 
     // region - Private API
     // Navigation Logic
-    private fun navigateToDestination(resId: Int) {
+    private fun navigateToDestinationIfNeeded(resId: Int, args: Bundle? = null) {
         if (navController.currentDestination?.id != resId) {
-            navController.navigate(resId)
+            navController.navigate(resId, args)
         }
     }
 
@@ -75,25 +76,43 @@ class MainActivity : BaseActivity() {
 
         when (item.itemId) {
             R.id.navigation_view_menu_item_one -> {
-                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
-
-                navigateToDestination(R.id.dest_main)
+                val resId = R.id.dest_main
+                if (navController.currentDestination?.id != resId) {
+                    navController.navigate(resId, Bundle().apply {
+                        putInt("page", 0)
+                    })
+                } else {
+                    val fragment = (nav_host_main.childFragmentManager.fragments.first() as? MainFragment)
+                    fragment?.updatePage(0)
+                }
             }
             R.id.navigation_view_menu_item_two -> {
-                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.TWO
-
-                navigateToDestination(R.id.dest_main)
+                val resId = R.id.dest_main
+                if (navController.currentDestination?.id != resId) {
+                    navController.navigate(resId, Bundle().apply {
+                        putInt("page", 1)
+                    })
+                } else {
+                    val fragment = (nav_host_main.childFragmentManager.fragments.first() as? MainFragment)
+                    fragment?.updatePage(1)
+                }
             }
             R.id.navigation_view_menu_item_three -> {
-                activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.THREE
-
-                navigateToDestination(R.id.dest_main)
+                val resId = R.id.dest_main
+                if (navController.currentDestination?.id != resId) {
+                    navController.navigate(resId, Bundle().apply {
+                        putInt("page", 2)
+                    })
+                } else {
+                    val fragment = (nav_host_main.childFragmentManager.fragments.first() as? MainFragment)
+                    fragment?.updatePage(2)
+                }
             }
             R.id.navigation_view_menu_item_four -> {
-                navigateToDestination(R.id.dest_four)
+                navigateToDestinationIfNeeded(R.id.dest_four)
             }
             R.id.navigation_view_menu_item_five -> {
-                navigateToDestination(R.id.dest_five)
+                navigateToDestinationIfNeeded(R.id.dest_five)
             }
         }
 

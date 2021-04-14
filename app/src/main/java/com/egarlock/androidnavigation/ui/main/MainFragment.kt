@@ -31,6 +31,7 @@ class MainFragment : BaseFragment(), NavigationHost,
 
     private lateinit var activityViewModel: MainActivityViewModel
 
+    private var initial: Int? = null
     private val backStack = Stack<Int>()
 
     private val fragments = listOf(
@@ -46,8 +47,13 @@ class MainFragment : BaseFragment(), NavigationHost,
     // endregion
 
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    // region - Constructors
+        arguments?.apply {
+            initial = getInt("page")
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -74,24 +80,7 @@ class MainFragment : BaseFragment(), NavigationHost,
         bottom_navigation_view.setOnNavigationItemSelectedListener(this)
         bottom_navigation_view.setOnNavigationItemReselectedListener(this)
 
-
-//        // Default MenuItem / Fragment
-//        activityViewModel.mainPagerFragment.value.let { mainPagerFragment ->
-//
-//            when (mainPagerFragment) {
-//                MainActivityViewModel.MainPagerFragent.ONE -> bottom_navigation_view.selectedItemId = R.id.menu_item_one
-//                MainActivityViewModel.MainPagerFragent.TWO -> bottom_navigation_view.selectedItemId = R.id.menu_item_two
-//                MainActivityViewModel.MainPagerFragent.THREE -> bottom_navigation_view.selectedItemId = R.id.menu_item_three
-//            }
-//        }
-
-
-        // MainPagerFragment
-        activityViewModel.mainPagerFragment.observe(this, Observer { mainPagerFragment ->
-            var position = mainPagerFragment.ordinal
-
-            if (backStack.isEmpty() || view_pager.currentItem != position) setItem(position)
-        })
+        if (backStack.isEmpty()) setItem(initial ?: 0)
     }
     // endregion
 
@@ -151,6 +140,11 @@ class MainFragment : BaseFragment(), NavigationHost,
     }
 
     override fun popToRoot() { }
+
+    // MainActivity
+    fun updatePage(page: Int) {
+        if (view_pager.currentItem != page) setItem(page)
+    }
     // endregion
 
 

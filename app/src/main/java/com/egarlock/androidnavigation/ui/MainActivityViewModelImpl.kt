@@ -5,6 +5,6 @@ import androidx.lifecycle.ViewModel
 
 class MainActivityViewModelImpl : ViewModel(), MainActivityViewModel {
 
-    override var mainPagerFragment: MutableLiveData<MainActivityViewModel.MainPagerFragent> = MutableLiveData(MainActivityViewModel.MainPagerFragent.ONE)
+//    override var mainPagerFragment: MutableLiveData<MainActivityViewModel.MainPagerFragent> = MutableLiveData(MainActivityViewModel.MainPagerFragent.ONE)
     
 }
