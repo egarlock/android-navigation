@@ -10,9 +10,11 @@ import com.egarlock.androidnavigation.application.App
 import com.egarlock.androidnavigation.ui.MainActivityViewModel
 import com.egarlock.androidnavigation.ui.MainActivityViewModelImpl
 import com.egarlock.androidnavigation.ui.base.BaseFragment
+import com.egarlock.androidnavigation.ui.base.NavigationHost
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : BaseFragment() {
+class MainFragment : BaseFragment(), NavigationHost {
 
     // region - Variables
     private val viewModel: MainFragmentViewModel = MainFragmentViewModelImpl()
@@ -104,6 +106,20 @@ class MainFragment : BaseFragment() {
         }
 
         return true
+    }
+
+    // NavigationHost
+    override fun onBackPressed(): Boolean {
+
+        var didNavigate = false
+
+        if (!didNavigate) didNavigate = (childFragmentManager.fragments.first() as? NavigationHost)?.onBackPressed() ?: false
+
+        if (!didNavigate) {
+
+        }
+
+        return didNavigate
     }
     // endregion
 
