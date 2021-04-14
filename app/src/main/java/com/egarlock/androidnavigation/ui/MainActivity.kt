@@ -76,23 +76,23 @@ class MainActivity : BaseActivity() {
             R.id.navigation_view_menu_item_one -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.ONE
 
-                navigateToDestination(R.id.navigation_fragment_main)
+                navigateToDestination(R.id.dest_main)
             }
             R.id.navigation_view_menu_item_two -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.TWO
 
-                navigateToDestination(R.id.navigation_fragment_main)
+                navigateToDestination(R.id.dest_main)
             }
             R.id.navigation_view_menu_item_three -> {
                 activityViewModel.mainPagerFragment.value = MainActivityViewModel.MainPagerFragent.THREE
 
-                navigateToDestination(R.id.navigation_fragment_main)
+                navigateToDestination(R.id.dest_main)
             }
             R.id.navigation_view_menu_item_four -> {
-                navigateToDestination(R.id.navigation_fragment_four)
+                navigateToDestination(R.id.dest_four)
             }
             R.id.navigation_view_menu_item_five -> {
-                navigateToDestination(R.id.navigation_fragment_five)
+                navigateToDestination(R.id.dest_five)
             }
         }
 
