@@ -88,7 +88,9 @@ class MainFragment : BaseFragment(), NavigationHost,
 
         // MainPagerFragment
         activityViewModel.mainPagerFragment.observe(this, Observer { mainPagerFragment ->
-            view_pager.currentItem = mainPagerFragment.ordinal
+            var position = mainPagerFragment.ordinal
+
+            if (backStack.isEmpty() || view_pager.currentItem != position) setItem(position)
         })
     }
     // endregion
@@ -138,7 +140,11 @@ class MainFragment : BaseFragment(), NavigationHost,
         if (!didNavigate) didNavigate = (fragments[view_pager.currentItem] as? NavigationHost)?.onBackPressed() ?: false
 
         if (!didNavigate) {
-
+            if (backStack.size > 1) {
+                backStack.pop()
+                view_pager.currentItem = backStack.peek()
+                didNavigate = true
+            }
         }
 
         return didNavigate
