@@ -43,6 +43,12 @@ final class NavigationHostFragment : Fragment(), NavigationHost {
             .navigateUp()
     }
 
+    override fun popToRoot() {
+        val navController = requireActivity()
+            .findNavController(navHostId)
+        navController.popBackStack(navController.graph.startDestination, false)
+    }
+
     companion object {
         private const val KEY_LAYOUT = "key_layout"
         private const val KEY_TOOLBAR = "key_toolbar"
