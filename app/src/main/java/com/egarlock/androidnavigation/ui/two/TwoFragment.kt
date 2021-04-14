@@ -32,6 +32,9 @@ class TwoFragment : BaseFragment() {
 
 
     // region - Private API
+    private fun next(view: View) {
+
+    }
     // endregion
 
 

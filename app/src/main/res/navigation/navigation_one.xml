@@ -12,28 +12,48 @@
         android:name="com.egarlock.androidnavigation.ui.one.OneFragment"
         android:label="One"
         tools:layout="@layout/fragment_one"
-        />
+        >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/dest_two"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/dest_two"
         android:name="com.egarlock.androidnavigation.ui.two.TwoFragment"
         android:label="Two"
         tools:layout="@layout/fragment_two"
-        />
+        >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/dest_three"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/dest_three"
         android:name="com.egarlock.androidnavigation.ui.three.ThreeFragment"
         android:label="Three"
         tools:layout="@layout/fragment_three"
-        />
+        >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/dest_four"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/dest_four"
         android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
         android:label="Four"
         tools:layout="@layout/fragment_four"
-        />
+        >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/dest_five"
+            />
+    </fragment>
 
     <fragment
         android:id="@+id/dest_five"

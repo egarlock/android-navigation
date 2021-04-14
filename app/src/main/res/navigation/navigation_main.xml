@@ -4,37 +4,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
-    app:startDestination="@id/navigation_fragment_main"
+    app:startDestination="@id/dest_main"
     >
 
     <fragment
-        android:id="@+id/navigation_fragment_main"
+        android:id="@+id/dest_main"
         android:name="com.egarlock.androidnavigation.ui.main.MainFragment"
-        android:label="main_fragment"
+        android:label="Main"
         tools:layout="@layout/fragment_main"
         >
-        <argument
-            android:name="defaultMenuItemId"
-            app:argType="reference"
-            android:defaultValue="0"
+        <action
+            android:id="@+id/four"
+            app:destination="@id/dest_four"
             />
-
+        <action
+            android:id="@+id/five"
+            app:destination="@id/dest_five"
+            />
     </fragment>
+
     <fragment
-        android:id="@+id/navigation_fragment_four"
+        android:id="@+id/dest_four"
         android:name="com.egarlock.androidnavigation.ui.four.FourFragment"
-        android:label="four_fragment"
+        android:label="Four"
         tools:layout="@layout/fragment_four"
         >
-
+        <action
+            android:id="@+id/next"
+            app:destination="@id/dest_five"
+            />
     </fragment>
+
     <fragment
-        android:id="@+id/navigation_fragment_five"
+        android:id="@+id/dest_five"
         android:name="com.egarlock.androidnavigation.ui.five.FiveFragment"
-        android:label="five_fragment"
+        android:label="Five"
         tools:layout="@layout/fragment_five"
-        >
-
-    </fragment>
+        />
 
 </navigation>
