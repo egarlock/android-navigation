@@ -53,7 +53,7 @@ class MainActivity : BaseActivity() {
 
 
         // NavController
-        navController = Navigation.findNavController(this, R.id.navigation_fragment)
+        navController = Navigation.findNavController(this, R.id.nav_host_main)
     }
     // endregion
 
